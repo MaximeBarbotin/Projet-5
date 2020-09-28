@@ -45,6 +45,7 @@
                     <th>Total</th>
                 </thead>
                 <tbody id="tbody">
+        <!-- JS dynamique-->
 
                 </tbody>
             </table>
@@ -55,7 +56,7 @@
         </div>
         <!-- Formualaire -->
         <div class="formulaire">
-            <form>
+            <form id="checkout">
                 <h2 class="basket_head_button">Finalisez votre commande:</h2>
                 <fieldset>
                     <input name="lastName" placeholder="Nom" type="text" tabindex="1" pattern="[A-Za-z]{1,15}" required
@@ -75,7 +76,7 @@
                     <input name="email" placeholder="Adresse mail" type="email" tabindex="6" required>
                 </fieldset>
                 <button id="back" onclick="history.go(-1)">Retour</button>
-                <button id="checkout" name="submit" type="submit" id="contact-submit"
+                <button type="submit" id="contact-submit"
                     data-submit="...Sending">Submit</button>
             </form>
         </div>

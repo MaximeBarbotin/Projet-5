@@ -56,7 +56,7 @@ function addLine(key, name, choosenColor, quantity, price, imageUrl) {
     const formatPrice = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(goodPrice)
     const totalPricePerTeddy = getTotalPricePerTeddy(quantity, price)
 
-    return `<tr data-key="${key}">
+    return `<tr id="line_basket" data-key="${key}">
         <td id="checkout-product-image" style="background-image:url(${imageUrl});background-size:16vh;background-repeat:no-repeat;background-position:center;"></td>
         <td>${name}</td>
         <td>${choosenColor}</td>
@@ -88,7 +88,7 @@ if (keys.length === 0) {
 
     }
 
-    tbody.innerHTML += `<tr>
+    tbody.innerHTML += `<tr id="total_line">
         <td id="total-line" colspan="6">Total</td>
         <td id="total">${getTotalCart()}</td>
     </tr>`
@@ -105,9 +105,8 @@ function displayForm() {
 const checkoutButton = document.querySelector('#checkout')
 
 checkoutButton.addEventListener('submit', (e) => {
+    e.preventDefault()
     const totalToPay = getTotalCart()
-    console.log(totalToPay);
-    const productsOrdered = cart[key]
     const orderTeddies = {
         products: [],
         contact: {
@@ -126,9 +125,10 @@ checkoutButton.addEventListener('submit', (e) => {
         const productsOrdered = product._id
         products.push(productsOrdered)
     }
-    postOrder(orderTeddies)
+    const ajax = new Ajax()
+    ajax.postOrder(orderTeddies)
         .then((resp) => {
             localStorage.removeItem('cart');
-            window.location.href = `commande.html?orderId=${resp.orderId}&firstName=${resp.contact.firstName}&lastName=${resp.contact.lastName}&totalToPay=${totalToPay}`
+            window.location.href = `order.html?orderId=${resp.orderId}&firstName=${resp.contact.firstName}&lastName=${resp.contact.lastName}&total=${total}`
         })
 });

@@ -17,14 +17,16 @@ function displayTeddieDetails(teddieData) {
             </div>
         </div>
         <aside>
-            <h2>${teddieData.name}</h2>
-            <div class="product_description">
-                <p>${teddieData.price / 100}€</p>
-            </div>
-            <div class="product_option">
-                <select id="color_selector" name="colors">
-                    ${teddieData.colors.map((color) => `<option value="${color}">${color}</option>`)}
-                </select>
+            <div>
+                <h2>${teddieData.name}</h2>
+                <div class="product_description">
+                    <p>${teddieData.price / 100}€</p>
+                </div>
+                <div class="product_option">
+                    <select id="color_selector" name="colors">
+                        ${teddieData.colors.map((color) => `<option value="${color}">${color}</option>`)}
+                    </select>
+                </div>
             </div>
             <div class="basket_add_section">
                 <button type="button" id="basket_add_button">Ajouter au panier</button>

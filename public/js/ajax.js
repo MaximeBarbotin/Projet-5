@@ -1,4 +1,3 @@
-
 class Ajax {
 
     get(url) {
@@ -20,23 +19,21 @@ class Ajax {
         })
     }
 
-    post() {
+    postOrder(orderTeddies) {
         //TO DO: Validation de la commande
-        function postOrder(orderTeddies) {
-            return new Promise(function (resolve) {
-                var XHR = new XMLHttpRequest();
-                XHR.onreadystatechange = function () {
-                    if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
-                        var response = JSON.parse(this.responseText);
-                        resolve(response)
-                    }
+        return new Promise(function (resolve) {
+            var XHR = new XMLHttpRequest();
+            XHR.onreadystatechange = function () {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 201) {
+                    var response = JSON.parse(this.responseText);
+                    resolve(response)
                 }
-                XHR.open("POST", "https://oc-p5-api.herokuapp.com/api/teddies/order");
-                XHR.setRequestHeader('Content-Type', 'application/json');
-                XHR.send(JSON.stringify(orderTeddies));
+            }
+            XHR.open("POST", "https://oc-p5-api.herokuapp.com/api/teddies/order");
+            XHR.setRequestHeader('Content-Type', 'application/json');
+            XHR.send(JSON.stringify(orderTeddies));
 
-            })
-        }
+        })
     }
 
 
