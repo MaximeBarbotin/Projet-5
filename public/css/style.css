@@ -245,7 +245,6 @@ aside h2{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin auto;
     }
     aside{
         height: 250px;
@@ -374,7 +373,7 @@ td img{
 
 button{
     font-size: 1.2em;
-    margin: 30px;
+    margin: 20px;
     color: white;
 }
 
