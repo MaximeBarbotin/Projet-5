@@ -1,5 +1,5 @@
 class Ajax {
-
+// Récupération données
     get(url) {
         return new Promise(function (resolve, reject) {
             const xhr = new XMLHttpRequest();
@@ -19,8 +19,8 @@ class Ajax {
         })
     }
 
+    // Validation de la commande
     postOrder(orderTeddies) {
-        //TO DO: Validation de la commande
         return new Promise(function (resolve) {
             var XHR = new XMLHttpRequest();
             XHR.onreadystatechange = function () {

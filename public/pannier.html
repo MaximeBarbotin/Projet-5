@@ -36,8 +36,9 @@
             <h1 class="basket_head_button">Votre panier</h1>
             <table id="basket_content">
                 <thead class="ligne basket_titles">
-                    <th>Produit</th>
+                    <!--En-tete du panier-->
                     <th>Image</th>
+                    <th>Produit</th>
                     <th>Couleur</th>
                     <th>Quantité</th>
                     <th>Supprimer</th>
@@ -45,8 +46,7 @@
                     <th>Total</th>
                 </thead>
                 <tbody id="tbody">
-        <!-- JS dynamique-->
-
+                    <!-- JS dynamique (contenu du panier)-->
                 </tbody>
             </table>
             <div class="buttons">
@@ -76,8 +76,9 @@
                     <input name="email" placeholder="Adresse mail" type="email" tabindex="6" required>
                 </fieldset>
                 <button id="back" onclick="history.go(-1)">Retour</button>
-                <button type="submit" id="contact-submit"
-                    data-submit="...Sending">Valider ma commande</button>
+                <!--Bouton "continuer mes achats"-->
+                <button type="submit" id="contact-submit" data-submit="...Sending">Valider ma commande</button>
+                <!--Bouton "valider ma commande"-->
             </form>
         </div>
 
@@ -117,10 +118,10 @@
             Copyright © 2020 Orinoco. All Rights Reserved
         </p>
     </footer>
-
-
+    
     <script src="./js/ajax.js"></script>
     <script src="./js/basket.js"></script>
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@ const ajax = new Ajax();
 const params = new URLSearchParams(document.location.search.substring(1))
 const productId = params.get('productId')
 
-//HTML SECTION
+// Affichages données fiche produit
 function displayTeddieDetails(teddieData) {
     const mainProduct = document.querySelector('.main_product')
     mainProduct.innerHTML = `<div class="product_section">
@@ -33,10 +33,8 @@ function displayTeddieDetails(teddieData) {
             </div>
         </aside>`
 
-
-    //COLOR PICKER SELECTION
+    // Selection couleur
     const colorPicked = (teddieData.colors);
-
     const select = document.querySelector('#color_selector');
     for (let i = 0; i < colorPicked.length; i++) {
         let option = document.createElement('option');
@@ -45,10 +43,7 @@ function displayTeddieDetails(teddieData) {
         select.appendChild(option);
     }
 
-
-    //ADD TO CART SECTION
-
-
+    // Bouton ajouter au panier
     const basketAdd = document.getElementById('basket_add_button');
 
     basketAdd.addEventListener('click', (e) => {
@@ -71,13 +66,10 @@ function displayTeddieDetails(teddieData) {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-
-        console.log(basketAdd);
-        console.log(cart);
-
     })
 }
 
+// Récupération données produit
 ajax
     .get(`https://oc-p5-api.herokuapp.com/api/teddies/${productId}`)
     .then((teddieData) => {
