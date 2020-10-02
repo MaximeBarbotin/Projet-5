@@ -34,14 +34,7 @@ function displayTeddieDetails(teddieData) {
         </aside>`
 
     // Selection couleur
-    const colorPicked = (teddieData.colors);
     const select = document.querySelector('#color_selector');
-    for (let i = 0; i < colorPicked.length; i++) {
-        let option = document.createElement('option');
-        option.value = colorPicked[i];
-        option.innerHTML = colorPicked[i];
-        select.appendChild(option);
-    }
 
     // Bouton ajouter au panier
     const basketAdd = document.getElementById('basket_add_button');

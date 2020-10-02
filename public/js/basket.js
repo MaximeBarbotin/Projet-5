@@ -25,21 +25,14 @@ function removeItem(key) {
     }
 }
 
-// Prix total par articles
+// Calcul prix total par articles
 function getTotalPricePerTeddy(quantity, price) {
     const goodPrice = Math.round(price) / 100;
     const totalPerTeddies = quantity * goodPrice;
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalPerTeddies)
 }
 
-// Prix total du panier
-function computeTotals(key) {
-    const product = cart[key]
-    const totalPricePerTeddy = getTotalPricePerTeddy(product.quantity, product.price)
-    document.querySelector(`[data-key="${key}"] td:last-child`).innerHTML = totalPricePerTeddy;
-    document.querySelector(`#total`).innerHTML = getTotalCart();
-}
-
+// Calcul prix total panier
 function getTotalCart() {
     let total = 0;
     for (let i = 0; i < keys.length; i++) {
@@ -47,6 +40,14 @@ function getTotalCart() {
         total += cart[key].quantity * (cart[key].price / 100)
     }
     return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(total)
+}
+
+// Affichage des prix
+function computeTotals(key) {
+    const product = cart[key]
+    const totalPricePerTeddy = getTotalPricePerTeddy(product.quantity, product.price)
+    document.querySelector(`[data-key="${key}"] td:last-child`).innerHTML = totalPricePerTeddy;
+    document.querySelector(`#total`).innerHTML = getTotalCart();
 }
 
 // Affichage des produits dans le panier
@@ -99,12 +100,12 @@ function displayForm() {
     document.querySelector(".formulaire").style.display = "block";
 }
 
-const checkoutButton = document.querySelector('#checkout')
+const checkoutForm = document.querySelector('#checkout')
 
-checkoutButton.addEventListener('submit', (e) => {
+checkoutForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const totalToPay = getTotalCart()
-    const orderTeddies = {
+    const orderTeddies = { //Récupération du formulaire
         products: [],
         contact: {
             firstName: e.target.firstName.value,
@@ -115,12 +116,12 @@ checkoutButton.addEventListener('submit', (e) => {
         }
     }
 
-    let products = orderTeddies.products
+        // Récupération du panier
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i]
         const product = cart[key]
         const productsOrdered = product._id
-        products.push(productsOrdered)
+        orderTeddies.products.push(productsOrdered)
     }
 
     const ajax = new Ajax()
